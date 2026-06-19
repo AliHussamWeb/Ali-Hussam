@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ali Hussam • Profile</title>
+<title>علي حسام • ملف شخصي</title>
 
 <style>
 :root{
@@ -14,7 +14,7 @@
   --btn:#d7d7d7;
 }
 
-/* BACKGROUND */
+/* الخلفية */
 body{
   margin:0;
   font-family:system-ui;
@@ -35,7 +35,7 @@ body::before{
     linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
-/* LIGHT MODE */
+/* الوضع الفاتح */
 body.light{
   --bg:#eaf2ff;
   --card:rgba(0,0,0,0.06);
@@ -44,7 +44,7 @@ body.light{
   --btn:#6c5ce7;
 }
 
-/* CONTAINER */
+/* الحاوية */
 .container{
   max-width:900px;
   margin:auto;
@@ -52,7 +52,7 @@ body.light{
   text-align:center;
 }
 
-/* PROFILE */
+/* البروفايل */
 .profile{
   padding:25px;
   border-radius:18px;
@@ -60,7 +60,7 @@ body.light{
   border:1px solid rgba(255,255,255,0.08);
 }
 
-/* IMAGE */
+/* الصورة */
 .avatar{
   width:170px;
   height:170px;
@@ -77,20 +77,20 @@ body.light{
   object-fit:cover;
 }
 
-/* NAME */
+/* الاسم */
 h1{
   margin:12px 0 6px;
   font-size:28px;
 }
 
-/* STATUS */
+/* الوصف */
 .status{
   color:var(--muted);
   font-size:14px;
   margin-bottom:15px;
 }
 
-/* BUTTONS */
+/* الأزرار */
 .buttons{
   display:flex;
   flex-direction:column;
@@ -113,7 +113,7 @@ h1{
   transform:translateY(-3px);
 }
 
-/* POETRY MODAL */
+/* نافذة الشعر */
 .modal{
   display:none;
   position:fixed;
@@ -145,7 +145,7 @@ h1{
   float:right;
 }
 
-/* POEM STATIC */
+/* صندوق الشعر القديم */
 .poem{
   margin-top:20px;
   padding:20px;
@@ -168,24 +168,25 @@ h1{
       <img src="ttt.JPG">
     </div>
 
-    <h1>Ali Hussam</h1>
+    <h1>علي حسام</h1>
 
     <div class="status">
-      طالب في جامعة المستنصرية – أمن سيبراني
+      طالب في جامعة المستنصرية – اختصاص أمن سيبراني
     </div>
 
-    <!-- BUTTONS -->
+    <!-- الأزرار -->
     <div class="buttons">
 
       <button class="btn" onclick="randomPoem()">📜 أبيات شعرية عشوائية</button>
 
-      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
-      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
-      <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
-      <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
+      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">إنستغرام</a>
+      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">تيك توك</a>
+      <a class="btn" href="https://t.me/lr2_f" target="_blank">تليجرام</a>
+      <a class="btn" href="mailto:ddss10218@gmail.com">البريد الإلكتروني</a>
 
-      <button class="btn" onclick="toggleMusic()">🎵 Music</button>
-      <button class="btn" onclick="toggleTheme()">Toggle Theme</button>
+      <button class="btn" onclick="toggleMusic()">🎵 تشغيل الموسيقى</button>
+
+      <button id="themeBtn" class="btn" onclick="toggleTheme()">🌙 الوضع الليلي</button>
 
     </div>
 
@@ -193,23 +194,15 @@ h1{
 
 </div>
 
-<!-- STATIC POEM -->
-<div class="poem">
-وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
-فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br><br>
-فَإِن كُنتَ في عِزٍّ وَخَيرٍ وَمَنعَةٍ<br>
-فَكَم ماتَ مِن قَومٍ هُم مِنكَ أَوضَعُ
-</div>
-
-<!-- POETRY MODAL -->
+<!-- نافذة الشعر -->
 <div id="poetryModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closePoem()">✖</span>
+    <span class="close" onclick="closePoem()">✖ إغلاق</span>
     <div id="poetryText"></div>
   </div>
 </div>
 
-<!-- MUSIC -->
+<!-- الموسيقى -->
 <audio id="music" loop>
   <source src="ggg.mp3" type="audio/mpeg">
 </audio>
@@ -243,8 +236,17 @@ function toggleMusic(){
   }
 }
 
+/* 🔥 زر الثيم المطوّر */
 function toggleTheme(){
   document.body.classList.toggle("light");
+
+  const btn = document.getElementById("themeBtn");
+
+  if(document.body.classList.contains("light")){
+    btn.innerHTML = "☀️ الوضع النهاري";
+  } else {
+    btn.innerHTML = "🌙 الوضع الليلي";
+  }
 }
 
 </script>
