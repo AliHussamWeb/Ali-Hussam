@@ -14,13 +14,13 @@
   --btn:#d7d7d7;
 }
 
+/* الخلفية */
 body{
   margin:0;
   font-family:system-ui;
   background:var(--bg);
   color:var(--text);
   transition:0.4s ease;
-  overflow-x:hidden;
 }
 
 body::before{
@@ -34,6 +34,7 @@ body::before{
     linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
+/* الثيم الفاتح */
 body.light{
   --bg:#eaf2ff;
   --card:rgba(0,0,0,0.06);
@@ -112,7 +113,7 @@ h1{ margin:12px 0 6px; font-size:28px; }
   padding:25px;
   border-radius:15px;
   width:85%;
-  max-width:450px;
+  max-width:500px;
   text-align:center;
   line-height:2.2;
   color:#00e5ff;
@@ -131,13 +132,6 @@ h1{ margin:12px 0 6px; font-size:28px; }
   border-radius:10px;
   cursor:pointer;
   margin-bottom:10px;
-}
-
-/* الفوتر */
-.footer{
-  margin-top:25px;
-  color:white;
-  opacity:0.8;
 }
 </style>
 </head>
@@ -160,16 +154,18 @@ h1{ margin:12px 0 6px; font-size:28px; }
 
     <div class="buttons">
 
-      <button class="btn" onclick="randomPoem()">📜 أبيات شعرية عشوائية</button>
+      <button class="btn" onclick="randomPoem()">📜 أبيات شعرية</button>
+
+      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">إنستغرام</a>
+      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">تيك توك</a>
+      <a class="btn" href="https://t.me/lr2_f" target="_blank">تليجرام</a>
+      <a class="btn" href="mailto:ddss10218@gmail.com">إيميل</a>
+
       <button class="btn" onclick="toggleMusic()">🎵 موسيقى</button>
-      <button class="btn" onclick="toggleTheme()">🌙 تغيير الثيم</button>
+      <button class="btn" onclick="toggleTheme()">🌙 الثيم</button>
 
     </div>
 
-  </div>
-
-  <div class="footer">
-    إنَّ خيرَ اللهِ قادمٌ فَاصبر ✨
   </div>
 
 </div>
@@ -179,7 +175,7 @@ h1{ margin:12px 0 6px; font-size:28px; }
   <div class="modal-content">
 
     <div class="close" onclick="closePoem()">إغلاق ✖</div>
-    <div id="poem"></div>
+    <div id="poemBox"></div>
 
   </div>
 </div>
@@ -190,11 +186,11 @@ h1{ margin:12px 0 6px; font-size:28px; }
 
 <script>
 
-/* 500 بيت مولّد */
+/* 🔥 300 بيت شعر (صدرين + عجزين) */
 const poems = [];
 
 const poets = [
-"المتنبي","عنترة","الشافعي","أبو العلاء","الشابي"
+"المتنبي","عنترة","الشافعي","أبو العلاء المعري","الشابي"
 ];
 
 const base = [
@@ -207,7 +203,7 @@ const base = [
 "خفف الوطء ما أظن أديم الأرضِ<br>إلا من هذه الأجساد"
 ];
 
-for(let i=0;i<500;i++){
+for(let i=0;i<300;i++){
   poems.push(
     base[i%base.length] + "<br>" +
     base[(i+1)%base.length] + "<br>" +
@@ -217,27 +213,23 @@ for(let i=0;i<500;i++){
   );
 }
 
-/* عرض الشعر */
 function randomPoem(){
-  const r = Math.floor(Math.random()*poems.length);
-  document.getElementById("poem").innerHTML = poems[r];
+  let r = Math.floor(Math.random()*poems.length);
+  document.getElementById("poemBox").innerHTML = poems[r];
   document.getElementById("modal").style.display = "flex";
 }
 
-/* إغلاق */
 function closePoem(){
   document.getElementById("modal").style.display = "none";
 }
 
 /* موسيقى */
 const music = document.getElementById("music");
-
 function toggleMusic(){
-  if(music.paused) music.play();
-  else music.pause();
+  music.paused ? music.play() : music.pause();
 }
 
-/* ثيم */
+/* ثيم مضبوط */
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
