@@ -106,13 +106,46 @@ h1{
   background:var(--btn);
   font-weight:700;
   border:1px solid rgba(255,255,255,0.3);
+  cursor:pointer;
 }
 
 .btn:hover{
   transform:translateY(-3px);
 }
 
-/* POEM BOX */
+/* POETRY MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.75);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-content{
+  background:var(--card);
+  padding:25px;
+  border-radius:15px;
+  max-width:420px;
+  width:85%;
+  text-align:center;
+  color:var(--text);
+  line-height:2;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.close{
+  cursor:pointer;
+  font-size:18px;
+  float:right;
+}
+
+/* POEM STATIC */
 .poem{
   margin-top:20px;
   padding:20px;
@@ -160,8 +193,21 @@ h1{
 
 </div>
 
-<!-- 📜 POETRY BOX (خارج البروفايل) -->
-<div id="poetryBox" class="poem" style="display:none;"></div>
+<!-- STATIC POEM -->
+<div class="poem">
+وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
+فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br><br>
+فَإِن كُنتَ في عِزٍّ وَخَيرٍ وَمَنعَةٍ<br>
+فَكَم ماتَ مِن قَومٍ هُم مِنكَ أَوضَعُ
+</div>
+
+<!-- POETRY MODAL -->
+<div id="poetryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePoem()">✖</span>
+    <div id="poetryText"></div>
+  </div>
+</div>
 
 <!-- MUSIC -->
 <audio id="music" loop>
@@ -172,16 +218,19 @@ h1{
 
 const poems = [
 `إذا غامَرْتَ في شَرَفٍ مَرُومِ<br>فَلا تَقنَعْ بِما دونَ النُّجُومِ — المتنبي`,
-`ولقد ذكرتكِ والرماحُ نواهلٌ مني<br>وبِيضُ الهندِ تقطرُ من دمي — عنترة`,
-`دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ — الشافعي`,
-`خفف الوطء ما أظن أديم الأرض<br>إلا من هذه الأجساد — المعري`
+`ولقد ذكرتكِ والرماحُ نواهلٌ مني<br>وبِيضُ الهندِ تقطرُ من دمي — عنترة بن شداد`,
+`دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ — الإمام الشافعي`,
+`خفف الوطء ما أظن أديم الأرض<br>إلا من هذه الأجساد — أبو العلاء المعري`
 ];
 
 function randomPoem(){
-  const box = document.getElementById("poetryBox");
   const rand = Math.floor(Math.random() * poems.length);
-  box.innerHTML = poems[rand];
-  box.style.display = "block";
+  document.getElementById("poetryText").innerHTML = poems[rand];
+  document.getElementById("poetryModal").style.display = "flex";
+}
+
+function closePoem(){
+  document.getElementById("poetryModal").style.display = "none";
 }
 
 const music = document.getElementById("music");
