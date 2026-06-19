@@ -3,26 +3,52 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ali Hussam • Legend</title>
+<title>Ali Hussam • Legend Profile</title>
 
 <style>
-body{
+*{
   margin:0;
-  font-family:Arial;
-  color:white;
-  background: radial-gradient(circle at top, #2b0000, #000);
-  overflow:hidden;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* HERO */
-.hero{
+body{
+  font-family:Arial, sans-serif;
+  background:#000;
+  color:white;
+  overflow-y:auto;
+}
+
+/* 🌌 animated background */
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,0,0,0.25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,255,255,0.15), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255,0,255,0.12), transparent 60%);
+  animation:bgMove 10s infinite alternate;
+  z-index:-1;
+}
+
+@keyframes bgMove{
+  from{transform:scale(1) translate(0,0);}
+  to{transform:scale(1.2) translate(20px,20px);}
+}
+
+/* header */
+header{
   text-align:center;
-  padding:50px 20px;
+  padding:40px 20px;
 }
 
 .avatar{
-  width:130px;
-  height:130px;
+  width:120px;
+  height:120px;
   margin:auto;
   border-radius:50%;
   overflow:hidden;
@@ -38,18 +64,17 @@ body{
 
 h1{
   margin-top:15px;
-  text-shadow:0 0 15px red;
   font-size:28px;
+  text-shadow:0 0 15px red;
 }
 
 .subtitle{
-  color:rgba(255,255,255,0.7);
   margin-top:5px;
+  color:rgba(255,255,255,0.7);
   font-size:14px;
-  letter-spacing:1px;
 }
 
-/* CARDS */
+/* cards */
 .container{
   max-width:800px;
   margin:auto;
@@ -58,50 +83,48 @@ h1{
 
 .card{
   background:rgba(255,255,255,0.05);
-  margin:10px auto;
+  border:1px solid rgba(255,0,0,0.3);
+  margin:10px 0;
   padding:15px;
   border-radius:12px;
-  border:1px solid rgba(255,0,0,0.3);
   transition:0.3s;
+  backdrop-filter: blur(8px);
 }
 
 .card:hover{
-  transform:scale(1.05);
+  transform:scale(1.03);
   box-shadow:0 0 20px red;
 }
 
 a{
   color:red;
-  font-weight:bold;
   text-decoration:none;
+  font-weight:bold;
 }
 
-/* floating light */
-.glow{
-  position:absolute;
-  width:200px;
-  height:200px;
+/* button */
+button{
+  margin-top:15px;
+  padding:10px 15px;
+  border:none;
+  border-radius:10px;
   background:red;
-  filter:blur(120px);
-  opacity:0.2;
-  animation:move 6s infinite alternate;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 15px red;
 }
 
-@keyframes move{
-  from{transform:translate(0,0)}
-  to{transform:translate(200px,200px)}
+button:hover{
+  transform:scale(1.1);
 }
 </style>
 </head>
 
 <body>
 
-<div class="glow"></div>
-
-<div class="hero">
-
+<header>
   <div class="avatar">
-    <img src="ttt.jpg">
+    <img src="ttt.jpg" alt="profile">
   </div>
 
   <h1>Ali Hussam</h1>
@@ -110,31 +133,49 @@ a{
     Football Player • Passionate Folk Poet • Ambitious & Driven
   </div>
 
-</div>
+  <button onclick="toggleMusic()">🎵 Music</button>
+</header>
 
 <div class="container">
 
   <div class="card">
     <h3>Instagram</h3>
-    <a href="https://instagram.com/lr2_f">Follow</a>
+    <a href="https://instagram.com/lr2_f" target="_blank">Open</a>
   </div>
 
   <div class="card">
     <h3>TikTok</h3>
-    <a href="https://tiktok.com/@lr2_f">Watch</a>
+    <a href="https://tiktok.com/@lr2_f" target="_blank">Open</a>
   </div>
 
   <div class="card">
     <h3>Telegram</h3>
-    <a href="https://t.me/lr2_f">Contact</a>
+    <a href="https://t.me/lr2_f" target="_blank">Open</a>
   </div>
 
   <div class="card">
     <h3>Email</h3>
-    <a href="mailto:ddss10218@gmail.com">Send Message</a>
+    <a href="mailto:ddss10218@gmail.com">Send</a>
   </div>
 
 </div>
+
+<audio id="music" src="ggg.mp3"></audio>
+
+<script>
+let music=document.getElementById("music");
+let playing=false;
+
+function toggleMusic(){
+  if(!playing){
+    music.play();
+    playing=true;
+  }else{
+    music.pause();
+    playing=false;
+  }
+}
+</script>
 
 </body>
 </html>
