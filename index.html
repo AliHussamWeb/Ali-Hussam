@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -159,12 +160,12 @@ h1{
 
     <!-- BUTTONS -->
     <div class="buttons">
-
+      <div id="poetryBox" class="poem" style="display:none;"></div>
       <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
       <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
       <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
       <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
-
+      
       <button class="btn" onclick="toggleMusic()">🎵 Music</button>
       <button class="btn theme-btn" onclick="toggleTheme()">Toggle Theme</button>
 
@@ -173,6 +174,14 @@ h1{
   </div>
 
   <!-- POEM -->
+  .poem{
+  margin-top:20px;
+  padding:20px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  line-height:2;
+}
   <div class="poem">
 وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
 فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br><br>
@@ -188,6 +197,24 @@ h1{
 </audio>
 
 <script>
+  const poems = [
+`إذا غامَرْتَ في شَرَفٍ مَرُومِ<br>فَلا تَقنَعْ بِما دونَ النُّجُومِ — المتنبي`,
+
+`ولقد ذكرتكِ والرماحُ نواهلٌ مني<br>وبِيضُ الهندِ تقطرُ من دمي — عنترة بن شداد`,
+
+`دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ — الإمام الشافعي`,
+
+`خفف الوطء ما أظن أديم الأرض<br>إلا من هذه الأجساد — أبو العلاء المعري`
+];
+
+function randomPoem(){
+  const box = document.getElementById("poetryBox");
+
+  const rand = Math.floor(Math.random() * poems.length);
+
+  box.innerHTML = poems[rand];
+  box.style.display = "block";
+}
 const music = document.getElementById("music");
 
 function toggleMusic(){
