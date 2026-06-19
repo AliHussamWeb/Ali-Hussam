@@ -33,7 +33,7 @@ body::before{
     linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
-/* 🌟 ثيم فاتح أزرق */
+/* 🌟 الثيم الفاتح (مصَحّح) */
 body.light{
   --bg:#e9f7ff;
   --card:rgba(0,0,0,0.05);
@@ -74,9 +74,7 @@ body.light{
 
 h1{margin:10px 0;}
 
-.status{
-  color:var(--muted);
-}
+.status{color:var(--muted);}
 
 .buttons{
   display:flex;
@@ -126,10 +124,23 @@ h1{margin:10px 0;}
 }
 
 /* ألوان الشعر */
-.c1{background:#00e5ff22; color:#00e5ff;}
-.c2{background:#ff00aa22; color:#ff00aa;}
-.c3{background:#ffe60022; color:#ffe600;}
-.c4{background:#00ff8822; color:#00ff88;}
+.c1{background:#00e5ff22;color:#00e5ff;}
+.c2{background:#ff00aa22;color:#ff00aa;}
+.c3{background:#ffe60022;color:#ffe600;}
+.c4{background:#00ff8822;color:#00ff88;}
+
+/* 🟡 المربع الذهبي */
+.footer-box{
+  margin-top:30px;
+  padding:18px;
+  background:linear-gradient(135deg,#ffd700,#ffcc33);
+  color:#1a1a1a;
+  font-weight:bold;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 0 15px rgba(255,215,0,0.6);
+  border:1px solid rgba(0,0,0,0.2);
+}
 
 </style>
 </head>
@@ -166,6 +177,11 @@ h1{margin:10px 0;}
 
   </div>
 
+  <!-- 🟡 المربع الذهبي -->
+  <div class="footer-box">
+    إنَّ خيرَ اللهِ قادمٌ فَاصبر ✨
+  </div>
+
 </div>
 
 <!-- نافذة الشعر -->
@@ -184,7 +200,7 @@ h1{margin:10px 0;}
 
 <script>
 
-/* 📚 شعراء + أبيات */
+/* الشعر */
 const poems = [
 {s:"على قدرِ أهلِ العزمِ تأتي العزائمُ",b:"وتأتي على قدرِ الكرامِ المكارمُ",p:"المتنبي"},
 {s:"إذا غامَرْتَ في شرفٍ مرومِ",b:"فلا تقنع بما دون النجومِ",p:"المتنبي"},
@@ -193,45 +209,37 @@ const poems = [
 {s:"ولقد ذكرتك والرماح نواهل مني",b:"وبِيض الهند تقطر من دمي",p:"عنترة"},
 {s:"إذا الشعب يوماً أراد الحياةَ",b:"فلا بد أن يستجيب القدرُ",p:"الشابي"},
 {s:"خفف الوطء ما أظن أديم الأرضِ",b:"إلا من هذه الأجسادِ",p:"المعري"},
-{s:"ألا كل شيء ما خلا الله باطلُ",b:"وكل نعيم لا محالة زائلُ",p:"لبيد بن ربيعة"},
-{s:"ومن لم يذد عن حوضه بسلاحه",b:"يهدم ومن لا يظلم الناس يُظلم",p:"الفرزدق"},
-{s:"ومن لم يذق مر التعلم ساعة",b:"تجرع ذل الجهل طول حياته",p:"الشافعي"},
-{s:"إذا كنت في كل الأمور معاتباً",b:"صديقك لم تلق الذي لا تعاتبه",p:"الشافعي"},
-{s:"ومن يَكُ ذا فمٍ مرٍّ مريضٍ",b:"يجد مراً به الماء الزلالا",p:"المتنبي"},
-{s:"إذا رأيت نيوب الليث بارزةً",b:"فلا تظنن أن الليث يبتسمُ",p:"المتنبي"},
-{s:"نكون كروح بين جسمين قسمت",b:"فجسمهما جسمان روح بواحد",p:"ابن زيدون"},
-{s:"تراه إذا ما جئته متهللاً",b:"كأنك تعطيه الذي أنت سائله",p:"زهير بن أبي سلمى"}
+{s:"ألا كل شيء ما خلا الله باطلُ",b:"وكل نعيم لا محالة زائلُ",p:"لبيد بن ربيعة"}
 ];
 
-/* 🎨 عرض عشوائي */
+/* عرض */
 function randomPoem(){
   let i = Math.floor(Math.random()*poems.length);
   let p = poems[i];
 
-  let colors = ["c1","c2","c3","c4"];
+  let colors=["c1","c2","c3","c4"];
   let c = colors[Math.floor(Math.random()*colors.length)];
 
-  let box = document.getElementById("box");
-  box.className = "modal-content " + c;
+  let box=document.getElementById("box");
+  box.className="modal-content "+c;
 
-  document.getElementById("poem").innerHTML =
-    p.s + "<br>" + p.b + "<br><br>— " + p.p;
+  document.getElementById("poem").innerHTML=
+    p.s+"<br>"+p.b+"<br><br>— "+p.p;
 
-  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modal").style.display="flex";
 }
 
-/* ❌ إغلاق */
 function closePoem(){
-  document.getElementById("modal").style.display = "none";
+  document.getElementById("modal").style.display="none";
 }
 
-/* 🎵 موسيقى */
-const music = document.getElementById("music");
+/* موسيقى */
+const music=document.getElementById("music");
 function toggleMusic(){
-  music.paused ? music.play() : music.pause();
+  music.paused?music.play():music.pause();
 }
 
-/* 🌙 ثيم */
+/* ثيم */
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
