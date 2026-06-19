@@ -97,7 +97,9 @@ h1{
 }
 
 /* BUTTONS */
+
 .buttons{
+
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -157,11 +159,13 @@ h1{
 
     <!-- BUTTONS -->
     <div class="buttons">
+<a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+<a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+<a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
+<a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
 
-      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
-      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
-      <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
-      <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
+<button class="btn" onclick="toggleMusic()">🎵 Music</button>
+
 
       <button class="btn theme-btn" onclick="toggleTheme()">Toggle Theme</button>
 
@@ -182,7 +186,20 @@ h1{
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
+
+const music = document.getElementById("music");
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+  }else{
+    music.pause();
+  }
+}
 </script>
 
+<audio id="music" loop preload="auto">
+  <source src="ggg.mp4a" type="audio/mp4">
+</audio>
 </body>
 </html>
