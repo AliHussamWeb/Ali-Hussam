@@ -2,44 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ali Hussam • Social Links</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ali Hussam • Profile</title>
 
 <style>
 :root{
-  --bg:#0b1220;
-  --text:rgba(255,255,255,0.92);
+  --bg:#06070c;
+  --red:#ff0033;
+  --cyan:#00f6ff;
+  --text:#ffffff;
   --muted:rgba(255,255,255,0.7);
-  --accent:#ff2e2e;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Arial;
+  font-family:system-ui, Arial;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* glowing background */
+.bg{
+  position:fixed;
+  inset:0;
   background:
     radial-gradient(circle at 20% 20%, rgba(255,0,0,0.25), transparent 40%),
-    radial-gradient(circle at 80% 50%, rgba(255,0,0,0.12), transparent 50%),
-    #050505;
-  color:var(--text);
-  text-align:center;
+    radial-gradient(circle at 80% 40%, rgba(0,246,255,0.15), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255,0,0,0.1), transparent 60%);
+  filter:blur(60px);
+  z-index:-1;
 }
 
 /* container */
 .container{
-  padding:40px 20px;
+  max-width:1000px;
+  margin:auto;
+  padding:30px;
+}
+
+/* header */
+.header{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:20px;
+  padding:20px;
+  border:1px solid rgba(255,0,0,0.25);
+  border-radius:18px;
+  background:rgba(255,255,255,0.03);
+  box-shadow:0 0 25px rgba(255,0,0,0.15);
 }
 
 /* avatar */
 .avatar{
   width:120px;
   height:120px;
-  margin:auto;
   border-radius:50%;
   overflow:hidden;
-  border:2px solid red;
-  box-shadow:0 0 25px red;
+  border:2px solid var(--red);
+  box-shadow:0 0 20px var(--red);
 }
 
 .avatar img{
@@ -50,103 +74,168 @@ body{
 
 /* name */
 h1{
-  margin-top:15px;
-  text-shadow:0 0 15px red;
+  margin:0;
+  font-size:30px;
+  text-shadow:0 0 10px var(--red);
 }
 
-/* description */
 p{
+  margin:5px 0;
   color:var(--muted);
+}
+
+/* buttons */
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
+
+a.btn, button{
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,0,0,0.4);
+  background:rgba(255,0,0,0.08);
+  color:white;
+  cursor:pointer;
+  transition:0.25s;
+  text-decoration:none;
+  font-weight:600;
+}
+
+a.btn:hover, button:hover{
+  transform:scale(1.07);
+  box-shadow:0 0 15px var(--red);
+}
+
+/* grid */
+.grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:15px;
 }
 
 /* cards */
 .card{
-  width:260px;
-  margin:12px auto;
   padding:15px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,0,0,0.4);
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);
   transition:0.3s;
 }
 
 .card:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 20px red;
+  transform:translateY(-5px);
+  box-shadow:0 0 18px rgba(255,0,0,0.25);
 }
 
-a{
-  color:red;
-  font-weight:bold;
-  text-decoration:none;
+.card h3{
+  margin:0 0 8px;
+  color:var(--cyan);
 }
 
-/* music button */
-button{
-  margin-top:15px;
-  padding:10px 15px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  background:red;
-  color:white;
-  box-shadow:0 0 15px red;
+/* footer */
+footer{
+  text-align:center;
+  margin-top:30px;
+  color:var(--muted);
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
 
+<div class="bg"></div>
+
 <div class="container">
 
-<!-- 👤 الصورة -->
-<div class="avatar">
-  <img src="ttt.jpg" alt="Ali Hussam">
+<!-- HEADER -->
+<div class="header">
+
+  <div class="avatar">
+    <img src="ttt.jpg" alt="Ali Hussam">
+  </div>
+
+  <div>
+    <h1>Ali Hussam</h1>
+    <p>Football Player • Folk Poet • Ambitious & Passionate</p>
+
+    <div class="actions">
+      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+      <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
+      <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
+
+      <button onclick="toggleMusic()">Music</button>
+      <button onclick="toggleTheme()">Dark Mode</button>
+    </div>
+  </div>
+
 </div>
 
-<!-- 🧑 الاسم -->
-<h1>Ali Hussam</h1>
+<!-- CONTENT -->
+<div class="grid">
 
-<!-- 📝 وصف -->
-<p>Football Player • Folk Poet • Passionate & Ambitious</p>
-
-<!-- 🎵 موسيقى -->
-<button onclick="toggleMusic()">Music</button>
-
-<!-- 🔗 روابط -->
 <div class="card">
-  <a href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+<h3>About Me</h3>
+<p>Ali Hussam — Football player, passionate poet, ambitious personality aiming for success and impact.</p>
 </div>
 
 <div class="card">
-  <a href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+<h3>Instagram</h3>
+<p>@lr2_f</p>
 </div>
 
 <div class="card">
-  <a href="https://t.me/lr2_f" target="_blank">Telegram</a>
+<h3>TikTok</h3>
+<p>@lr2_f</p>
 </div>
 
 <div class="card">
-  <a href="mailto:ddss10218@gmail.com">Email</a>
+<h3>Telegram</h3>
+<p>@lr2_f</p>
+</div>
+
+<div class="card">
+<h3>Email</h3>
+<p>ddss10218@gmail.com</p>
+</div>
+
+<div class="card">
+<h3>Status</h3>
+<p>LEGEND MODE • ACTIVE • CYBER PROFILE</p>
 </div>
 
 </div>
 
-<!-- 🎵 ملف صوت -->
+<footer>
+© 2026 Ali Hussam • All Rights Reserved
+</footer>
+
+</div>
+
+<!-- MUSIC -->
 <audio id="music" src="ggg.mp3"></audio>
 
 <script>
-let music=document.getElementById("music");
-let play=false;
+const music=document.getElementById("music");
+let theme=true;
 
 function toggleMusic(){
-  if(!play){
-    music.play();
-    play=true;
+  if(music.paused) music.play();
+  else music.pause();
+}
+
+function toggleTheme(){
+  if(theme){
+    document.body.style.background="#000";
   }else{
-    music.pause();
-    play=false;
+    document.body.style.background="#06070c";
   }
+  theme=!theme;
 }
 </script>
 
