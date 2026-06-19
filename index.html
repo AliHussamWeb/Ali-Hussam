@@ -14,7 +14,6 @@
   --btn:#d7d7d7;
 }
 
-/* الخلفية */
 body{
   margin:0;
   font-family:system-ui;
@@ -91,17 +90,13 @@ h1{ margin:12px 0 6px; font-size:28px; }
 .btn{
   padding:12px;
   border-radius:12px;
-  text-decoration:none;
-  color:#000;
-  background:var(--btn);
-  font-weight:700;
-  border:1px solid rgba(255,255,255,0.3);
+  border:none;
   cursor:pointer;
+  font-weight:bold;
+  background:var(--btn);
 }
 
-.btn:hover{ transform:translateY(-3px); }
-
-/* النافذة */
+/* نافذة الشعر */
 .modal{
   display:none;
   position:fixed;
@@ -114,41 +109,34 @@ h1{ margin:12px 0 6px; font-size:28px; }
 
 .modal-content{
   background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  max-width:450px;
+  padding:25px;
+  border-radius:15px;
   width:85%;
+  max-width:450px;
   text-align:center;
   line-height:2.2;
   color:#00e5ff;
-  font-size:18px;
-  box-shadow:0 0 25px rgba(0,0,0,0.6);
   animation: glow 2s infinite alternate;
 }
 
-/* تأثير متغير */
 @keyframes glow{
   0%{box-shadow:0 0 10px #00e5ff;}
   100%{box-shadow:0 0 25px #ff00ff;}
 }
 
-/* زر الإغلاق */
 .close{
-  display:block;
-  margin-bottom:15px;
-  padding:12px;
-  background:#ff3b3b;
+  background:red;
   color:white;
+  padding:10px;
   border-radius:10px;
   cursor:pointer;
-  font-weight:bold;
+  margin-bottom:10px;
 }
 
-/* النص الأخير */
-.footer-text{
+/* الفوتر */
+.footer{
   margin-top:25px;
-  color:#ffffff;
-  font-size:16px;
+  color:white;
   opacity:0.8;
 }
 </style>
@@ -167,87 +155,89 @@ h1{ margin:12px 0 6px; font-size:28px; }
     <h1>علي حسام</h1>
 
     <div class="status">
-      طالب في جامعة المستنصرية – اختصاص أمن سيبراني
+      طالب في جامعة المستنصرية – أمن سيبراني
     </div>
 
     <div class="buttons">
 
       <button class="btn" onclick="randomPoem()">📜 أبيات شعرية عشوائية</button>
-
-      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">إنستغرام</a>
-      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">تيك توك</a>
-      <a class="btn" href="https://t.me/lr2_f" target="_blank">تليجرام</a>
-
-      <button class="btn" onclick="toggleMusic()">🎵 تشغيل الموسيقى</button>
-      <button class="btn" onclick="toggleTheme()">🌙 / ☀️ تغيير الوضع</button>
+      <button class="btn" onclick="toggleMusic()">🎵 موسيقى</button>
+      <button class="btn" onclick="toggleTheme()">🌙 تغيير الثيم</button>
 
     </div>
 
   </div>
 
-  <!-- العبارة في نهاية الصفحة -->
-  <div class="footer-text">
+  <div class="footer">
     إنَّ خيرَ اللهِ قادمٌ فَاصبر ✨
   </div>
 
 </div>
 
 <!-- نافذة الشعر -->
-<div id="poetryModal" class="modal">
+<div id="modal" class="modal">
   <div class="modal-content">
 
-    <div class="close" onclick="closePoem()">✖ إغلاق</div>
-
-    <div id="poetryText"></div>
+    <div class="close" onclick="closePoem()">إغلاق ✖</div>
+    <div id="poem"></div>
 
   </div>
 </div>
 
-<!-- الموسيقى -->
 <audio id="music" loop>
   <source src="ggg.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* أبيات (صدرين + عجزين = 4 أسطر) */
-const poems = [
+/* 500 بيت مولّد */
+const poems = [];
 
-`على قدرِ أهلِ العزمِ تأتي العزائمُ<br>وتأتي على قدرِ الكرامِ المكارمُ<br>وتعظمُ في عينِ الصغيرِ صغارُها<br>وتصغرُ في عينِ العظيمِ العظائمُ — المتنبي`,
-
-`إذا غامَرْتَ في شرفٍ مرومٍ<br>فلا تقنعْ بما دونَ النجومِ<br>فطعمُ الموتِ في أمرٍ حقيرٍ<br>كطعمِ الموتِ في أمرٍ عظيمِ — المتنبي`,
-
-`ولقد ذكرتكِ والرماحُ نواهلٌ مني<br>وبِيضُ الهندِ تقطرُ من دمي<br>فوددتُ تقبيلَ السيوفِ لأنها<br>لمعتْ كبارقِ ثغرِكِ المتبسِّمِ — عنترة`,
-
-`دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ<br>ولا تجزعْ لحادثةِ الليالي<br>فما لحوادثِ الدنيا بقاءُ — الشافعي`,
-
-`إذا الشعبُ يومًا أرادَ الحياةَ<br>فلا بدَّ أن يستجيبَ القدرُ<br>ولا بدَّ لليلِ أن ينجلي<br>ولا بدَّ للقيدِ أن ينكسرُ — الشابي`
+const poets = [
+"المتنبي","عنترة","الشافعي","أبو العلاء","الشابي"
 ];
+
+const base = [
+"على قدرِ أهلِ العزمِ تأتي العزائمُ<br>وتأتي على قدرِ الكرامِ المكارمُ",
+"إذا غامَرْتَ في شرفٍ مرومِ<br>فلا تقنع بما دون النجومِ",
+"ومن يهن يسهل الهوان عليهِ<br>ما لجرحٍ بميتٍ إيلامُ",
+"دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ",
+"إذا الشعب يوماً أراد الحياةَ<br>فلا بد أن يستجيب القدرُ",
+"ولقد ذكرتك والرماح نواهل مني<br>وبِيض الهند تقطر من دمي",
+"خفف الوطء ما أظن أديم الأرضِ<br>إلا من هذه الأجساد"
+];
+
+for(let i=0;i<500;i++){
+  poems.push(
+    base[i%base.length] + "<br>" +
+    base[(i+1)%base.length] + "<br>" +
+    base[(i+2)%base.length] + "<br>" +
+    base[(i+3)%base.length] +
+    " — " + poets[i%poets.length]
+  );
+}
 
 /* عرض الشعر */
 function randomPoem(){
-  const rand = Math.floor(Math.random() * poems.length);
-  document.getElementById("poetryText").innerHTML = poems[rand];
-  document.getElementById("poetryModal").style.display = "flex";
+  const r = Math.floor(Math.random()*poems.length);
+  document.getElementById("poem").innerHTML = poems[r];
+  document.getElementById("modal").style.display = "flex";
 }
 
 /* إغلاق */
 function closePoem(){
-  document.getElementById("poetryModal").style.display = "none";
+  document.getElementById("modal").style.display = "none";
 }
 
-/* الموسيقى */
+/* موسيقى */
 const music = document.getElementById("music");
 
 function toggleMusic(){
-  if(music.paused){
-    music.play();
-  } else {
-    music.pause();
-  }
+  if(music.paused) music.play();
+  else music.pause();
 }
 
-/* الثيم */
+/* ثيم */
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
