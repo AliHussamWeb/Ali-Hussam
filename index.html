@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ali Hussam • Legend Profile</title>
+<title>Profile</title>
 
 <style>
 :root{
-  --bg1:#f5f7ff;
-  --bg2:#e8f0ff;
-  --card:rgba(255,255,255,0.6);
-  --text:#1a1a1a;
-  --accent:#6c5ce7;
-  --accent2:#00b894;
+  --bg1:#05070f;
+  --bg2:#0a0f1f;
+  --card:rgba(255,255,255,0.06);
+  --text:#ffffff;
+  --accent:#4da3ff;
 }
 
 *{box-sizing:border-box}
@@ -23,19 +22,20 @@ body{
   background:linear-gradient(135deg,var(--bg1),var(--bg2));
   color:var(--text);
   transition:0.4s;
+  min-height:100vh;
 }
 
-/* dark mode */
-body.dark{
-  --bg1:#070a12;
-  --bg2:#0d1224;
-  --card:rgba(255,255,255,0.05);
-  --text:#ffffff;
+/* light mode */
+body.light{
+  --bg1:#d7e6ff;
+  --bg2:#f5f7ff;
+  --card:rgba(0,0,0,0.06);
+  --text:#111;
 }
 
 /* container */
 .container{
-  max-width:1000px;
+  max-width:900px;
   margin:auto;
   padding:30px;
 }
@@ -49,16 +49,15 @@ body.dark{
   border-radius:18px;
   background:var(--card);
   backdrop-filter:blur(10px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* avatar */
+/* image */
 .avatar{
   width:110px;
   height:110px;
   border-radius:50%;
   overflow:hidden;
-  border:3px solid var(--accent);
+  border:2px solid var(--accent);
 }
 
 .avatar img{
@@ -70,12 +69,12 @@ body.dark{
 /* name */
 h1{
   margin:0;
-  font-size:28px;
+  font-size:26px;
 }
 
-.subtitle{
-  opacity:0.7;
-  margin-top:5px;
+p{
+  margin:5px 0;
+  opacity:0.8;
 }
 
 /* buttons */
@@ -86,7 +85,6 @@ h1{
   margin-top:10px;
 }
 
-/* fancy buttons */
 .btn{
   padding:10px 14px;
   border-radius:12px;
@@ -95,73 +93,27 @@ h1{
   text-decoration:none;
   color:white;
   font-weight:600;
+  background:var(--accent);
   transition:0.3s;
-  display:inline-block;
-  position:relative;
-  overflow:hidden;
-}
-
-.btn::before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
-  left:-100%;
-  top:0;
-  background:rgba(255,255,255,0.2);
-  transition:0.3s;
-}
-
-.btn:hover::before{
-  left:0;
 }
 
 .btn:hover{
   transform:scale(1.05);
 }
 
-/* different buttons */
-.insta{background:linear-gradient(45deg,#ff416c,#ff4b2b);}
-.tiktok{background:linear-gradient(45deg,#000,#333);}
-.telegram{background:linear-gradient(45deg,#0088cc,#00aced);}
-.email{background:linear-gradient(45deg,#6c5ce7,#a29bfe);}
-.music{background:linear-gradient(45deg,#00b894,#55efc4);}
-.theme{background:linear-gradient(45deg,#fd79a8,#e84393);}
-
-/* grid */
-.grid{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
-/* card */
-.card{
-  padding:18px;
-  border-radius:14px;
-  background:var(--card);
-  backdrop-filter:blur(10px);
-  text-align:center;
-}
-
-/* poem */
-.poem{
-  margin-top:25px;
-  padding:20px;
-  border-radius:16px;
-  background:var(--card);
-  text-align:center;
-  line-height:1.9;
-  font-size:18px;
-  font-weight:500;
-}
+/* special colors */
+.ig{background:#e1306c;}
+.tt{background:#000;}
+.tg{background:#229ed9;}
+.mail{background:#ffb703;}
+.music{background:#00b4d8;}
+.theme{background:#6a4c93;}
 
 /* footer */
 footer{
+  margin-top:30px;
   text-align:center;
-  margin-top:25px;
-  opacity:0.6;
+  opacity:0.7;
 }
 </style>
 </head>
@@ -170,64 +122,44 @@ footer{
 
 <div class="container">
 
-<!-- HEADER -->
 <div class="header">
 
   <div class="avatar">
-    <img src="ttt.JPG" alt="Ali Hussam">
+    <img src="ttt.JPG" alt="profile">
   </div>
 
   <div>
     <h1>Ali Hussam</h1>
-    <div class="subtitle">Football Player • Folk Poet • Ambitious Personality</div>
+    <p>Football Player • Poet • Ambitious</p>
 
     <div class="buttons">
 
-      <a class="btn insta" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
-
-      <a class="btn tiktok" href="https://www.tiktok.com/@lr2_f" target="_blank">TikTok</a>
-
-      <a class="btn telegram" href="https://t.me/lr2_f" target="_blank">Telegram</a>
-
-      <a class="btn email" href="mailto:ddss10218@gmail.com">Email</a>
+      <a class="btn ig" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+      <a class="btn tt" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+      <a class="btn tg" href="https://t.me/lr2_f" target="_blank">Telegram</a>
+      <a class="btn mail" href="mailto:ddss10218@gmail.com">Email</a>
 
       <button class="btn music" onclick="toggleMusic()">Music</button>
-
-      <button class="btn theme" onclick="toggleTheme()">Dark Mode</button>
+      <button class="btn theme" onclick="toggleTheme()">Theme</button>
 
     </div>
   </div>
 
 </div>
 
-<!-- GRID -->
-<div class="grid">
-  <div class="card">Legend Profile</div>
-  <div class="card">Cyber Style UI</div>
-  <div class="card">Modern Design</div>
-  <div class="card">Fast & Clean</div>
-</div>
-
-<!-- POEM -->
-<div class="poem">
+<footer>
 وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
 فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br>
 فَإِن كُنتَ في عِزٍّ وَخَيرٍ وَمَنعَةٍ<br>
 فَكَم ماتَ مِن قَومٍ هُم مِنكَ أَوضَعُ
-</div>
-
-<footer>
-© 2026 Ali Hussam • Legend Website
 </footer>
 
 </div>
 
-<!-- MUSIC -->
 <audio id="music" src="ggg.mp3"></audio>
 
 <script>
 const music=document.getElementById("music");
-let dark=false;
 
 function toggleMusic(){
   if(music.paused) music.play();
@@ -235,8 +167,7 @@ function toggleMusic(){
 }
 
 function toggleTheme(){
-  dark=!dark;
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 }
 </script>
 
