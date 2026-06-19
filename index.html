@@ -3,65 +3,61 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ali Hussam • Profile Hub</title>
+<title>Ali Hussam • Profile</title>
 
 <style>
 :root{
-  --bg1:#050505;
-  --bg2:#1a1a1a;
+  --bg:#0b0f14;
   --card:rgba(255,255,255,0.06);
   --text:#ffffff;
   --muted:rgba(255,255,255,0.7);
-  --btn:#d6d6d6;
+  --btn:#d7d7d7;
 }
 
 /* BACKGROUND */
 body{
   margin:0;
   font-family:system-ui;
+  background:var(--bg);
   color:var(--text);
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  overflow-x:hidden;
+  transition:0.4s ease;
 }
 
-/* subtle glow */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 45%);
   z-index:-1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,150,255,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(120,0,255,0.12), transparent 45%),
+    linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
-/* container */
+/* CONTAINER */
 .container{
-  max-width:1000px;
+  max-width:900px;
   margin:auto;
   padding:30px;
+  text-align:center;
 }
 
-/* TOP PROFILE */
+/* PROFILE */
 .profile{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
   padding:25px;
   border-radius:18px;
   background:var(--card);
   border:1px solid rgba(255,255,255,0.08);
 }
 
-/* image */
+/* IMAGE */
 .avatar{
   width:150px;
   height:150px;
+  margin:auto;
   border-radius:50%;
   overflow:hidden;
   border:2px solid rgba(255,255,255,0.2);
-  box-shadow:0 0 25px rgba(255,255,255,0.08);
 }
 
 .avatar img{
@@ -70,14 +66,14 @@ body::before{
   object-fit:cover;
 }
 
-/* name */
+/* NAME */
 h1{
-  margin:12px 0 5px;
+  margin:12px 0 6px;
   font-size:28px;
 }
 
-/* bio */
-.bio{
+/* STATUS */
+.status{
   color:var(--muted);
   font-size:14px;
   margin-bottom:15px;
@@ -86,14 +82,13 @@ h1{
 /* BUTTONS */
 .buttons{
   display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
+  flex-direction:column;
   gap:10px;
-  margin-top:10px;
+  margin-top:15px;
 }
 
 .btn{
-  padding:10px 14px;
+  padding:12px;
   border-radius:12px;
   text-decoration:none;
   color:#000;
@@ -108,34 +103,6 @@ h1{
   box-shadow:0 10px 20px rgba(0,0,0,0.4);
 }
 
-/* GRID */
-.grid{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:15px;
-}
-
-/* CARD */
-.card{
-  padding:16px;
-  border-radius:14px;
-  background:var(--card);
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-.card h3{
-  margin:0 0 8px;
-  font-size:15px;
-  color:#fff;
-}
-
-.card p{
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-}
-
 /* POEM */
 .poem{
   margin-top:20px;
@@ -144,15 +111,26 @@ h1{
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.08);
   line-height:2;
-  text-align:center;
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  margin-top:25px;
-  color:var(--muted);
-  font-size:13px;
+/* THEME DARK/LIGHT FIX */
+.light{
+  background:#e9f1ff;
+  color:#000;
+}
+
+.light body{
+  background:#e9f1ff;
+}
+
+.light .profile,
+.light .poem{
+  background:rgba(0,0,0,0.05);
+}
+
+.light .btn{
+  background:#fff;
+  color:#000;
 }
 </style>
 </head>
@@ -161,20 +139,19 @@ footer{
 
 <div class="container">
 
-  <!-- PROFILE -->
   <div class="profile">
 
     <div class="avatar">
-      <img src="ttt.JPG" alt="profile">
+      <img src="ttt.JPG">
     </div>
 
     <h1>Ali Hussam</h1>
 
-    <div class="bio">
-      Football Player • Folk Poet • Ambitious Personality
+    <div class="status">
+      Cyber Security Student at Al-Mustansiriya University
     </div>
 
-    <!-- BUTTONS -->
+    <!-- BUTTONS ONLY -->
     <div class="buttons">
 
       <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
@@ -182,44 +159,8 @@ footer{
       <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
       <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
 
-      <a class="btn" href="#" onclick="copyLink()">Copy Link</a>
-      <a class="btn" href="#" onclick="toggleTheme()">Theme</a>
+      <button class="btn" onclick="toggleTheme()">Toggle Theme</button>
 
-    </div>
-
-  </div>
-
-  <!-- INFO CARDS -->
-  <div class="grid">
-
-    <div class="card">
-      <h3>About</h3>
-      <p>Personal profile hub for all social links and contact information.</p>
-    </div>
-
-    <div class="card">
-      <h3>Instagram</h3>
-      <p>@lr2_f</p>
-    </div>
-
-    <div class="card">
-      <h3>TikTok</h3>
-      <p>@lr2_f</p>
-    </div>
-
-    <div class="card">
-      <h3>Telegram</h3>
-      <p>@lr2_f</p>
-    </div>
-
-    <div class="card">
-      <h3>Email</h3>
-      <p>ddss10218@gmail.com</p>
-    </div>
-
-    <div class="card">
-      <h3>Status</h3>
-      <p>Online • Active Profile</p>
     </div>
 
   </div>
@@ -232,21 +173,11 @@ footer{
 فَكَم ماتَ مِن قَومٍ هُم مِنكَ أَوضَعُ
   </div>
 
-  <footer>
-    © 2026 Ali Hussam • Profile Hub
-  </footer>
-
 </div>
 
 <script>
-function copyLink(){
-  navigator.clipboard.writeText(window.location.href);
-  alert("Link copied!");
-}
-
 function toggleTheme(){
-  document.body.style.filter =
-    document.body.style.filter === "invert(1)" ? "none" : "invert(1)";
+  document.body.classList.toggle("light");
 }
 </script>
 
