@@ -3,54 +3,61 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ali Hussam</title>
+<title>Ali Hussam • Profile Hub</title>
 
 <style>
 :root{
-  --text:#fff;
-  --btn:#bfc7d5;      /* لون الأزرار (رصاصي فاتح أنيق) */
-  --bg1:#050505;      /* أسود */
-  --bg2:#2a2a2a;      /* رصاصي */
+  --bg1:#050505;
+  --bg2:#1a1a1a;
+  --card:rgba(255,255,255,0.06);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,0.7);
+  --btn:#d6d6d6;
 }
 
-/* ===== BACKGROUND ===== */
+/* BACKGROUND */
 body{
   margin:0;
   font-family:system-ui;
   color:var(--text);
-  overflow-x:hidden;
   background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
 }
 
-/* لمسة حركية خفيفة */
-.bg{
+/* subtle glow */
+body::before{
+  content:"";
   position:fixed;
   inset:0;
-  z-index:-1;
   background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 40%),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 40%),
     radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 45%);
+  z-index:-1;
 }
 
-/* CONTAINER */
+/* container */
 .container{
-  max-width:900px;
+  max-width:1000px;
   margin:auto;
-  text-align:center;
   padding:30px;
-  animation:fade 0.8s ease;
 }
 
-@keyframes fade{
-  from{opacity:0; transform:translateY(10px)}
-  to{opacity:1; transform:translateY(0)}
+/* TOP PROFILE */
+.profile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:25px;
+  border-radius:18px;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.08);
 }
 
-/* IMAGE */
+/* image */
 .avatar{
-  width:180px;
-  height:180px;
-  margin:auto;
+  width:150px;
+  height:150px;
   border-radius:50%;
   overflow:hidden;
   border:2px solid rgba(255,255,255,0.2);
@@ -63,85 +70,161 @@ body{
   object-fit:cover;
 }
 
-/* NAME */
+/* name */
 h1{
-  margin:15px 0;
+  margin:12px 0 5px;
   font-size:28px;
 }
 
-/* ===== BUTTONS (STYLE FAMOUS CLEAN) ===== */
+/* bio */
+.bio{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+/* BUTTONS */
 .buttons{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:10px;
-  margin-top:15px;
+  margin-top:10px;
 }
 
 .btn{
-  padding:11px 16px;
-  border-radius:14px;
+  padding:10px 14px;
+  border-radius:12px;
   text-decoration:none;
   color:#000;
-  font-weight:700;
-
-  /* لون موحد لكل الأزرار */
   background:var(--btn);
-
+  font-weight:700;
+  transition:0.2s;
   border:1px solid rgba(255,255,255,0.3);
-
-  /* ستايل مشاهير */
-  box-shadow:
-    0 5px 15px rgba(0,0,0,0.4),
-    inset 0 0 8px rgba(255,255,255,0.3);
-
-  transition:0.25s;
-  backdrop-filter:blur(10px);
 }
 
 .btn:hover{
-  transform:translateY(-4px) scale(1.03);
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.6),
-    0 0 12px rgba(255,255,255,0.15);
+  transform:translateY(-3px);
+  box-shadow:0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* GRID */
+.grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+}
+
+/* CARD */
+.card{
+  padding:16px;
+  border-radius:14px;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.card h3{
+  margin:0 0 8px;
+  font-size:15px;
+  color:#fff;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
 }
 
 /* POEM */
 .poem{
-  margin-top:30px;
+  margin-top:20px;
   padding:20px;
   border-radius:14px;
   background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.08);
   line-height:2;
+  text-align:center;
 }
 
-/* IMAGE STYLE FIX */
-.avatar img{
-  object-fit:cover;
+/* FOOTER */
+footer{
+  text-align:center;
+  margin-top:25px;
+  color:var(--muted);
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-
 <div class="container">
 
-  <div class="avatar">
-    <img src="ttt.JPG">
+  <!-- PROFILE -->
+  <div class="profile">
+
+    <div class="avatar">
+      <img src="ttt.JPG" alt="profile">
+    </div>
+
+    <h1>Ali Hussam</h1>
+
+    <div class="bio">
+      Football Player • Folk Poet • Ambitious Personality
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="buttons">
+
+      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+      <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
+      <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
+
+      <a class="btn" href="#" onclick="copyLink()">Copy Link</a>
+      <a class="btn" href="#" onclick="toggleTheme()">Theme</a>
+
+    </div>
+
   </div>
 
-  <h1>Ali Hussam</h1>
+  <!-- INFO CARDS -->
+  <div class="grid">
 
-  <div class="buttons">
-    <a class="btn" href="https://instagram.com/lr2_f">Instagram</a>
-    <a class="btn" href="https://tiktok.com/@lr2_f">TikTok</a>
-    <a class="btn" href="https://t.me/lr2_f">Telegram</a>
-    <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
+    <div class="card">
+      <h3>About</h3>
+      <p>Personal profile hub for all social links and contact information.</p>
+    </div>
+
+    <div class="card">
+      <h3>Instagram</h3>
+      <p>@lr2_f</p>
+    </div>
+
+    <div class="card">
+      <h3>TikTok</h3>
+      <p>@lr2_f</p>
+    </div>
+
+    <div class="card">
+      <h3>Telegram</h3>
+      <p>@lr2_f</p>
+    </div>
+
+    <div class="card">
+      <h3>Email</h3>
+      <p>ddss10218@gmail.com</p>
+    </div>
+
+    <div class="card">
+      <h3>Status</h3>
+      <p>Online • Active Profile</p>
+    </div>
+
   </div>
 
+  <!-- POEM -->
   <div class="poem">
 وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
 فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br><br>
@@ -149,7 +232,23 @@ h1{
 فَكَم ماتَ مِن قَومٍ هُم مِنكَ أَوضَعُ
   </div>
 
+  <footer>
+    © 2026 Ali Hussam • Profile Hub
+  </footer>
+
 </div>
+
+<script>
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
+}
+
+function toggleTheme(){
+  document.body.style.filter =
+    document.body.style.filter === "invert(1)" ? "none" : "invert(1)";
+}
+</script>
 
 </body>
 </html>
