@@ -33,31 +33,33 @@ body.light{
   --text:#111;
 }
 
-/* container */
 .container{
   max-width:900px;
   margin:auto;
   padding:30px;
 }
 
-/* header */
+/* HEADER */
 .header{
   display:flex;
+  flex-direction:column;
   align-items:center;
-  gap:20px;
-  padding:20px;
+  text-align:center;
+  gap:15px;
+  padding:25px;
   border-radius:18px;
   background:var(--card);
   backdrop-filter:blur(10px);
 }
 
-/* image */
+/* IMAGE CENTER BIG */
 .avatar{
-  width:110px;
-  height:110px;
+  width:160px;
+  height:160px;
   border-radius:50%;
   overflow:hidden;
-  border:2px solid var(--accent);
+  border:3px solid var(--accent);
+  box-shadow:0 0 25px rgba(77,163,255,0.5);
 }
 
 .avatar img{
@@ -66,10 +68,10 @@ body.light{
   object-fit:cover;
 }
 
-/* name */
+/* TEXT */
 h1{
   margin:0;
-  font-size:26px;
+  font-size:28px;
 }
 
 p{
@@ -77,11 +79,12 @@ p{
   opacity:0.8;
 }
 
-/* buttons */
+/* BUTTONS */
 .buttons{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
+  justify-content:center;
   margin-top:10px;
 }
 
@@ -93,7 +96,6 @@ p{
   text-decoration:none;
   color:white;
   font-weight:600;
-  background:var(--accent);
   transition:0.3s;
 }
 
@@ -101,7 +103,7 @@ p{
   transform:scale(1.05);
 }
 
-/* special colors */
+/* COLORS */
 .ig{background:#e1306c;}
 .tt{background:#000;}
 .tg{background:#229ed9;}
@@ -109,11 +111,13 @@ p{
 .music{background:#00b4d8;}
 .theme{background:#6a4c93;}
 
-/* footer */
+/* FOOTER */
 footer{
   margin-top:30px;
   text-align:center;
-  opacity:0.7;
+  opacity:0.85;
+  line-height:1.8;
+  font-size:15px;
 }
 </style>
 </head>
@@ -122,13 +126,12 @@ footer{
 
 <div class="container">
 
-<div class="header">
+  <div class="header">
 
-  <div class="avatar">
-    <img src="ttt.JPG" alt="profile">
-  </div>
+    <div class="avatar">
+      <img src="ttt.JPG" alt="profile">
+    </div>
 
-  <div>
     <h1>Ali Hussam</h1>
     <p>Football Player • Poet • Ambitious</p>
 
@@ -143,16 +146,15 @@ footer{
       <button class="btn theme" onclick="toggleTheme()">Theme</button>
 
     </div>
+
   </div>
 
-</div>
-
-<footer>
+  <footer>
 وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
 فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br>
 فَإِن كُنتَ في عِزٍّ وَخَيرٍ وَمَنعَةٍ<br>
 فَكَم ماتَ مِن قَومٍ هُم مِنكَ أَوضَعُ
-</footer>
+  </footer>
 
 </div>
 
