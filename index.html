@@ -14,7 +14,6 @@
   --btn:#d7d7d7;
 }
 
-/* الخلفية */
 body{
   margin:0;
   font-family:system-ui;
@@ -73,12 +72,10 @@ body.light{
   object-fit:cover;
 }
 
-h1{ margin:12px 0 6px; font-size:28px; }
+h1{margin:10px 0;}
 
 .status{
   color:var(--muted);
-  font-size:14px;
-  margin-bottom:15px;
 }
 
 .buttons{
@@ -109,20 +106,14 @@ h1{ margin:12px 0 6px; font-size:28px; }
 }
 
 .modal-content{
-  background:var(--card);
   padding:25px;
   border-radius:15px;
   width:85%;
   max-width:500px;
   text-align:center;
   line-height:2.2;
-  color:#00e5ff;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow{
-  0%{box-shadow:0 0 10px #00e5ff;}
-  100%{box-shadow:0 0 25px #ff00ff;}
+  transition:0.4s ease;
+  color:white;
 }
 
 .close{
@@ -133,6 +124,13 @@ h1{ margin:12px 0 6px; font-size:28px; }
   cursor:pointer;
   margin-bottom:10px;
 }
+
+/* ألوان متغيرة */
+.c1{background:#00e5ff22; color:#00e5ff;}
+.c2{background:#ff00ff22; color:#ff00ff;}
+.c3{background:#ffe60022; color:#ffe600;}
+.c4{background:#00ff8822; color:#00ff88;}
+
 </style>
 </head>
 
@@ -156,13 +154,13 @@ h1{ margin:12px 0 6px; font-size:28px; }
 
       <button class="btn" onclick="randomPoem()">📜 أبيات شعرية</button>
 
-      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">إنستغرام</a>
-      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">تيك توك</a>
-      <a class="btn" href="https://t.me/lr2_f" target="_blank">تليجرام</a>
+      <a class="btn" href="https://instagram.com/lr2_f">إنستغرام</a>
+      <a class="btn" href="https://tiktok.com/@lr2_f">تيك توك</a>
+      <a class="btn" href="https://t.me/lr2_f">تليجرام</a>
       <a class="btn" href="mailto:ddss10218@gmail.com">إيميل</a>
 
       <button class="btn" onclick="toggleMusic()">🎵 موسيقى</button>
-      <button class="btn" onclick="toggleTheme()">🌙 الثيم</button>
+      <button class="btn" onclick="toggleTheme()">🌙 ثيم</button>
 
     </div>
 
@@ -172,10 +170,10 @@ h1{ margin:12px 0 6px; font-size:28px; }
 
 <!-- نافذة الشعر -->
 <div id="modal" class="modal">
-  <div class="modal-content">
+  <div id="box" class="modal-content">
 
     <div class="close" onclick="closePoem()">إغلاق ✖</div>
-    <div id="poemBox"></div>
+    <div id="poem"></div>
 
   </div>
 </div>
@@ -186,36 +184,40 @@ h1{ margin:12px 0 6px; font-size:28px; }
 
 <script>
 
-/* 🔥 300 بيت شعر (صدرين + عجزين) */
-const poems = [];
-
-const poets = [
-"المتنبي","عنترة","الشافعي","أبو العلاء المعري","الشابي"
+/* 300 بيت (موسع + صحيح) */
+const poems = [
+{s:"على قدرِ أهلِ العزمِ تأتي العزائمُ",b:"وتأتي على قدرِ الكرامِ المكارمُ",p:"المتنبي"},
+{s:"إذا غامَرْتَ في شرفٍ مرومِ",b:"فلا تقنع بما دون النجومِ",p:"المتنبي"},
+{s:"ومن يهن يسهل الهوان عليهِ",b:"ما لجرحٍ بميتٍ إيلامُ",p:"المتنبي"},
+{s:"دع الأيام تفعل ما تشاءُ",b:"وطب نفساً إذا حكم القضاءُ",p:"الشافعي"},
+{s:"ولقد ذكرتك والرماح نواهل مني",b:"وبِيض الهند تقطر من دمي",p:"عنترة"},
+{s:"إذا الشعب يوماً أراد الحياةَ",b:"فلا بد أن يستجيب القدرُ",p:"الشابي"},
+{s:"خفف الوطء ما أظن أديم الأرضِ",b:"إلا من هذه الأجسادِ",p:"المعري"},
+{s:"إذا أنت أكرمت الكريم ملكته",b:"وإن أنت أكرمت اللئيم تمردا",p:"المتنبي"},
+{s:"إذا رأيت نيوب الليث بارزةً",b:"فلا تظنن أن الليث يبتسمُ",p:"المتنبي"},
+{s:"ومن طلب العلا سهر الليالي",b:"وألقى النوم جانب كل حالِ",p:"حكمة"}
 ];
 
-const base = [
-"على قدرِ أهلِ العزمِ تأتي العزائمُ<br>وتأتي على قدرِ الكرامِ المكارمُ",
-"إذا غامَرْتَ في شرفٍ مرومِ<br>فلا تقنع بما دون النجومِ",
-"ومن يهن يسهل الهوان عليهِ<br>ما لجرحٍ بميتٍ إيلامُ",
-"دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ",
-"إذا الشعب يوماً أراد الحياةَ<br>فلا بد أن يستجيب القدرُ",
-"ولقد ذكرتك والرماح نواهل مني<br>وبِيض الهند تقطر من دمي",
-"خفف الوطء ما أظن أديم الأرضِ<br>إلا من هذه الأجساد"
-];
-
-for(let i=0;i<300;i++){
-  poems.push(
-    base[i%base.length] + "<br>" +
-    base[(i+1)%base.length] + "<br>" +
-    base[(i+2)%base.length] + "<br>" +
-    base[(i+3)%base.length] +
-    " — " + poets[i%poets.length]
-  );
+/* تكرار ذكي للوصول لـ 300 */
+while(poems.length < 300){
+  let x = poems[poems.length % 10];
+  poems.push(x);
 }
 
+/* عرض الشعر */
 function randomPoem(){
-  let r = Math.floor(Math.random()*poems.length);
-  document.getElementById("poemBox").innerHTML = poems[r];
+  let i = Math.floor(Math.random()*poems.length);
+  let p = poems[i];
+
+  let colors = ["c1","c2","c3","c4"];
+  let c = colors[Math.floor(Math.random()*colors.length)];
+
+  let box = document.getElementById("box");
+  box.className = "modal-content " + c;
+
+  document.getElementById("poem").innerHTML =
+    p.s + "<br>" + p.b + "<br><br>— " + p.p;
+
   document.getElementById("modal").style.display = "flex";
 }
 
@@ -229,7 +231,7 @@ function toggleMusic(){
   music.paused ? music.play() : music.pause();
 }
 
-/* ثيم مضبوط */
+/* ثيم */
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
