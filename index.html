@@ -1,39 +1,45 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ali Hussam • Mode System</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ali Hussam • Social Links</title>
 
 <style>
+:root{
+  --bg:#0b1220;
+  --text:rgba(255,255,255,0.92);
+  --muted:rgba(255,255,255,0.7);
+  --accent:#ff2e2e;
+}
+
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial;
-  transition:0.5s;
-  overflow-y:auto;
-}
-
-/* 🌌 background */
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  filter:blur(40px);
-}
-
-/* containers */
-.container{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,0,0,0.25), transparent 40%),
+    radial-gradient(circle at 80% 50%, rgba(255,0,0,0.12), transparent 50%),
+    #050505;
+  color:var(--text);
   text-align:center;
-  padding:50px 20px;
 }
 
+/* container */
+.container{
+  padding:40px 20px;
+}
+
+/* avatar */
 .avatar{
   width:120px;
   height:120px;
   margin:auto;
   border-radius:50%;
   overflow:hidden;
-  border:2px solid white;
+  border:2px solid red;
+  box-shadow:0 0 25px red;
 }
 
 .avatar img{
@@ -42,78 +48,106 @@ body{
   object-fit:cover;
 }
 
+/* name */
+h1{
+  margin-top:15px;
+  text-shadow:0 0 15px red;
+}
+
+/* description */
+p{
+  color:var(--muted);
+}
+
 /* cards */
 .card{
   width:260px;
-  margin:10px auto;
+  margin:12px auto;
   padding:15px;
   border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,0,0,0.4);
   transition:0.3s;
 }
 
-/* buttons */
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px red;
+}
+
+a{
+  color:red;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* music button */
 button{
-  margin:5px;
+  margin-top:15px;
   padding:10px 15px;
   border:none;
   border-radius:10px;
   cursor:pointer;
+  background:red;
+  color:white;
+  box-shadow:0 0 15px red;
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg" id="bg"></div>
-
 <div class="container">
 
-  <div class="avatar">
-    <img src="ttt.jpg">
-  </div>
+<!-- 👤 الصورة -->
+<div class="avatar">
+  <img src="ttt.jpg" alt="Ali Hussam">
+</div>
 
-  <h1 id="name">Ali Hussam</h1>
+<!-- 🧑 الاسم -->
+<h1>Ali Hussam</h1>
 
-  <p>Football Player • Poet • Ambitious</p>
+<!-- 📝 وصف -->
+<p>Football Player • Folk Poet • Passionate & Ambitious</p>
 
-  <!-- 🎛️ MODES -->
-  <button onclick="dark()">Dark</button>
-  <button onclick="cyber()">Cyber</button>
-  <button onclick="neon()">Neon</button>
+<!-- 🎵 موسيقى -->
+<button onclick="toggleMusic()">Music</button>
 
-  <div class="card">
-    <a href="https://instagram.com/lr2_f">Instagram</a>
-  </div>
+<!-- 🔗 روابط -->
+<div class="card">
+  <a href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+</div>
 
-  <div class="card">
-    <a href="https://tiktok.com/@lr2_f">TikTok</a>
-  </div>
+<div class="card">
+  <a href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+</div>
+
+<div class="card">
+  <a href="https://t.me/lr2_f" target="_blank">Telegram</a>
+</div>
+
+<div class="card">
+  <a href="mailto:ddss10218@gmail.com">Email</a>
+</div>
 
 </div>
 
+<!-- 🎵 ملف صوت -->
+<audio id="music" src="ggg.mp3"></audio>
+
 <script>
+let music=document.getElementById("music");
+let play=false;
 
-function dark(){
-  document.body.style.background="#000";
-  document.getElementById("bg").style.background=
-    "radial-gradient(circle, rgba(255,0,0,0.2), transparent)";
-  document.getElementById("name").style.textShadow="0 0 10px red";
+function toggleMusic(){
+  if(!play){
+    music.play();
+    play=true;
+  }else{
+    music.pause();
+    play=false;
+  }
 }
-
-function cyber(){
-  document.body.style.background="#050816";
-  document.getElementById("bg").style.background=
-    "radial-gradient(circle, rgba(0,255,255,0.2), transparent)";
-  document.getElementById("name").style.textShadow="0 0 10px cyan";
-}
-
-function neon(){
-  document.body.style.background="#120012";
-  document.getElementById("bg").style.background=
-    "radial-gradient(circle, rgba(255,0,255,0.25), transparent)";
-  document.getElementById("name").style.textShadow="0 0 10px magenta";
-}
-
 </script>
 
 </body>
