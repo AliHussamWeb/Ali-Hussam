@@ -1,49 +1,30 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ali Hussam • Legend Profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Hussam • Mode System</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
-  font-family:Arial, sans-serif;
-  background:#000;
-  color:white;
+  margin:0;
+  font-family:Arial;
+  transition:0.5s;
   overflow-y:auto;
 }
 
-/* 🌌 animated background */
-body::before{
-  content:"";
+/* 🌌 background */
+.bg{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,0,0,0.25), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(0,255,255,0.15), transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(255,0,255,0.12), transparent 60%);
-  animation:bgMove 10s infinite alternate;
+  inset:0;
   z-index:-1;
+  filter:blur(40px);
 }
 
-@keyframes bgMove{
-  from{transform:scale(1) translate(0,0);}
-  to{transform:scale(1.2) translate(20px,20px);}
-}
-
-/* header */
-header{
+/* containers */
+.container{
   text-align:center;
-  padding:40px 20px;
+  padding:50px 20px;
 }
 
 .avatar{
@@ -52,8 +33,7 @@ header{
   margin:auto;
   border-radius:50%;
   overflow:hidden;
-  border:2px solid red;
-  box-shadow:0 0 25px red;
+  border:2px solid white;
 }
 
 .avatar img{
@@ -62,119 +42,78 @@ header{
   object-fit:cover;
 }
 
-h1{
-  margin-top:15px;
-  font-size:28px;
-  text-shadow:0 0 15px red;
-}
-
-.subtitle{
-  margin-top:5px;
-  color:rgba(255,255,255,0.7);
-  font-size:14px;
-}
-
 /* cards */
-.container{
-  max-width:800px;
-  margin:auto;
-  padding:20px;
-}
-
 .card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,0,0,0.3);
-  margin:10px 0;
+  width:260px;
+  margin:10px auto;
   padding:15px;
   border-radius:12px;
   transition:0.3s;
-  backdrop-filter: blur(8px);
 }
 
-.card:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 20px red;
-}
-
-a{
-  color:red;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* button */
+/* buttons */
 button{
-  margin-top:15px;
+  margin:5px;
   padding:10px 15px;
   border:none;
   border-radius:10px;
-  background:red;
-  color:white;
   cursor:pointer;
-  box-shadow:0 0 15px red;
-}
-
-button:hover{
-  transform:scale(1.1);
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="avatar">
-    <img src="ttt.jpg" alt="profile">
-  </div>
-
-  <h1>Ali Hussam</h1>
-
-  <div class="subtitle">
-    Football Player • Passionate Folk Poet • Ambitious & Driven
-  </div>
-
-  <button onclick="toggleMusic()">🎵 Music</button>
-</header>
+<div class="bg" id="bg"></div>
 
 <div class="container">
 
+  <div class="avatar">
+    <img src="ttt.jpg">
+  </div>
+
+  <h1 id="name">Ali Hussam</h1>
+
+  <p>Football Player • Poet • Ambitious</p>
+
+  <!-- 🎛️ MODES -->
+  <button onclick="dark()">Dark</button>
+  <button onclick="cyber()">Cyber</button>
+  <button onclick="neon()">Neon</button>
+
   <div class="card">
-    <h3>Instagram</h3>
-    <a href="https://instagram.com/lr2_f" target="_blank">Open</a>
+    <a href="https://instagram.com/lr2_f">Instagram</a>
   </div>
 
   <div class="card">
-    <h3>TikTok</h3>
-    <a href="https://tiktok.com/@lr2_f" target="_blank">Open</a>
-  </div>
-
-  <div class="card">
-    <h3>Telegram</h3>
-    <a href="https://t.me/lr2_f" target="_blank">Open</a>
-  </div>
-
-  <div class="card">
-    <h3>Email</h3>
-    <a href="mailto:ddss10218@gmail.com">Send</a>
+    <a href="https://tiktok.com/@lr2_f">TikTok</a>
   </div>
 
 </div>
 
-<audio id="music" src="ggg.mp3"></audio>
-
 <script>
-let music=document.getElementById("music");
-let playing=false;
 
-function toggleMusic(){
-  if(!playing){
-    music.play();
-    playing=true;
-  }else{
-    music.pause();
-    playing=false;
-  }
+function dark(){
+  document.body.style.background="#000";
+  document.getElementById("bg").style.background=
+    "radial-gradient(circle, rgba(255,0,0,0.2), transparent)";
+  document.getElementById("name").style.textShadow="0 0 10px red";
 }
+
+function cyber(){
+  document.body.style.background="#050816";
+  document.getElementById("bg").style.background=
+    "radial-gradient(circle, rgba(0,255,255,0.2), transparent)";
+  document.getElementById("name").style.textShadow="0 0 10px cyan";
+}
+
+function neon(){
+  document.body.style.background="#120012";
+  document.getElementById("bg").style.background=
+    "radial-gradient(circle, rgba(255,0,255,0.25), transparent)";
+  document.getElementById("name").style.textShadow="0 0 10px magenta";
+}
+
 </script>
 
 </body>
