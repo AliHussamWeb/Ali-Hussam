@@ -21,6 +21,7 @@ body{
   background:var(--bg);
   color:var(--text);
   transition:0.4s ease;
+  overflow-x:hidden;
 }
 
 body::before{
@@ -29,12 +30,12 @@ body::before{
   inset:0;
   z-index:-1;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,150,255,0.15), transparent 40%),
+    radial-gradient(circle at 20% 20%, rgba(0,150,255,0.18), transparent 40%),
     radial-gradient(circle at 80% 70%, rgba(120,0,255,0.12), transparent 45%),
     linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
-/* LIGHT MODE FIXED */
+/* LIGHT MODE */
 body.light{
   --bg:#eaf2ff;
   --card:rgba(0,0,0,0.06);
@@ -68,12 +69,13 @@ body.light::before{
 
 /* IMAGE */
 .avatar{
-  width:150px;
-  height:150px;
+  width:170px;
+  height:170px;
   margin:auto;
   border-radius:50%;
   overflow:hidden;
-  border:2px solid rgba(255,255,255,0.2);
+  border:3px solid rgba(255,255,255,0.2);
+  box-shadow:0 0 25px rgba(0,150,255,0.3);
 }
 
 .avatar img{
@@ -97,9 +99,7 @@ h1{
 }
 
 /* BUTTONS */
-
 .buttons{
-
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -113,7 +113,7 @@ h1{
   color:#000;
   background:var(--btn);
   font-weight:700;
-  transition:0.2s;
+  transition:0.25s;
   border:1px solid rgba(255,255,255,0.3);
 }
 
@@ -133,7 +133,7 @@ h1{
   color:var(--text);
 }
 
-/* THEME BUTTON FIX */
+/* THEME BUTTON */
 .theme-btn{
   background:linear-gradient(135deg,#6c5ce7,#00d2ff);
   color:white !important;
@@ -159,20 +159,20 @@ h1{
 
     <!-- BUTTONS -->
     <div class="buttons">
-<a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
-<a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
-<a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
-<a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
 
-<button class="btn" onclick="toggleMusic()">🎵 Music</button>
+      <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
+      <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">TikTok</a>
+      <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
+      <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
 
-
+      <button class="btn" onclick="toggleMusic()">🎵 Music</button>
       <button class="btn theme-btn" onclick="toggleTheme()">Toggle Theme</button>
 
     </div>
 
   </div>
 
+  <!-- POEM -->
   <div class="poem">
 وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
 فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br><br>
@@ -182,25 +182,26 @@ h1{
 
 </div>
 
-<script>
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="ggg.mp3" type="audio/mpeg">
+</audio>
 
+<script>
 const music = document.getElementById("music");
 
 function toggleMusic(){
   if(music.paused){
-    music.play();
-  }else{
+    music.play().catch(()=>alert("اضغط مرة ثانية لتشغيل الصوت"));
+  } else {
     music.pause();
   }
 }
+
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
 </script>
 
-<audio id="music" loop preload="auto">
-    <source src="ggg.mp3" type="audio/mpeg">
-</audio>
-  
 </body>
 </html>
