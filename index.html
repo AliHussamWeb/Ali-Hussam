@@ -34,6 +34,22 @@ body::before{
     linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
+/* LIGHT MODE FIXED */
+body.light{
+  --bg:#eaf2ff;
+  --card:rgba(0,0,0,0.06);
+  --text:#111;
+  --muted:rgba(0,0,0,0.6);
+  --btn:#6c5ce7;
+}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,140,255,0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,0,150,0.15), transparent 45%),
+    linear-gradient(135deg,#dbe9ff,#f5f8ff,#e8f0ff);
+}
+
 /* CONTAINER */
 .container{
   max-width:900px;
@@ -70,6 +86,7 @@ body::before{
 h1{
   margin:12px 0 6px;
   font-size:28px;
+  color:var(--text);
 }
 
 /* STATUS */
@@ -108,29 +125,16 @@ h1{
   margin-top:20px;
   padding:20px;
   border-radius:14px;
-  background:rgba(255,255,255,0.05);
+  background:var(--card);
   border:1px solid rgba(255,255,255,0.08);
   line-height:2;
+  color:var(--text);
 }
 
-/* THEME DARK/LIGHT FIX */
-.light{
-  background:#e9f1ff;
-  color:#000;
-}
-
-.light body{
-  background:#e9f1ff;
-}
-
-.light .profile,
-.light .poem{
-  background:rgba(0,0,0,0.05);
-}
-
-.light .btn{
-  background:#fff;
-  color:#000;
+/* THEME BUTTON FIX */
+.theme-btn{
+  background:linear-gradient(135deg,#6c5ce7,#00d2ff);
+  color:white !important;
 }
 </style>
 </head>
@@ -151,7 +155,7 @@ h1{
       Cyber Security Student at Al-Mustansiriya University
     </div>
 
-    <!-- BUTTONS ONLY -->
+    <!-- BUTTONS -->
     <div class="buttons">
 
       <a class="btn" href="https://instagram.com/lr2_f" target="_blank">Instagram</a>
@@ -159,13 +163,12 @@ h1{
       <a class="btn" href="https://t.me/lr2_f" target="_blank">Telegram</a>
       <a class="btn" href="mailto:ddss10218@gmail.com">Email</a>
 
-      <button class="btn" onclick="toggleTheme()">Toggle Theme</button>
+      <button class="btn theme-btn" onclick="toggleTheme()">Toggle Theme</button>
 
     </div>
 
   </div>
 
-  <!-- POEM -->
   <div class="poem">
 وَلا تَمشِ فَوقَ الأَرضِ إِلّا تَواضُعاً<br>
 فَكَم تَحتَها قَومٌ هُم مِنكَ أَرفَعُ<br><br>
