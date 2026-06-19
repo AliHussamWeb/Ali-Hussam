@@ -35,7 +35,6 @@ body::before{
     linear-gradient(135deg,#05070a,#0b0f14,#0d1118);
 }
 
-/* الوضع الفاتح */
 body.light{
   --bg:#eaf2ff;
   --card:rgba(0,0,0,0.06);
@@ -44,7 +43,6 @@ body.light{
   --btn:#6c5ce7;
 }
 
-/* الحاوية */
 .container{
   max-width:900px;
   margin:auto;
@@ -52,7 +50,6 @@ body.light{
   text-align:center;
 }
 
-/* البروفايل */
 .profile{
   padding:25px;
   border-radius:18px;
@@ -60,7 +57,6 @@ body.light{
   border:1px solid rgba(255,255,255,0.08);
 }
 
-/* الصورة */
 .avatar{
   width:170px;
   height:170px;
@@ -77,20 +73,14 @@ body.light{
   object-fit:cover;
 }
 
-/* الاسم */
-h1{
-  margin:12px 0 6px;
-  font-size:28px;
-}
+h1{ margin:12px 0 6px; font-size:28px; }
 
-/* الوصف */
 .status{
   color:var(--muted);
   font-size:14px;
   margin-bottom:15px;
 }
 
-/* الأزرار */
 .buttons{
   display:flex;
   flex-direction:column;
@@ -109,25 +99,19 @@ h1{
   cursor:pointer;
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-}
+.btn:hover{ transform:translateY(-3px); }
 
-/* نافذة الشعر */
+/* النافذة */
 .modal{
   display:none;
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.85);
   justify-content:center;
   align-items:center;
   z-index:999;
 }
 
-/* صندوق الشعر */
 .modal-content{
   background:var(--card);
   padding:30px;
@@ -135,14 +119,14 @@ h1{
   max-width:450px;
   width:85%;
   text-align:center;
-  line-height:2;
+  line-height:2.2;
   color:#00e5ff;
   font-size:18px;
   box-shadow:0 0 25px rgba(0,0,0,0.6);
   animation: glow 2s infinite alternate;
 }
 
-/* تأثير لون متحرك */
+/* تأثير متغير */
 @keyframes glow{
   0%{box-shadow:0 0 10px #00e5ff;}
   100%{box-shadow:0 0 25px #ff00ff;}
@@ -152,7 +136,7 @@ h1{
 .close{
   display:block;
   margin-bottom:15px;
-  padding:10px;
+  padding:12px;
   background:#ff3b3b;
   color:white;
   border-radius:10px;
@@ -160,8 +144,12 @@ h1{
   font-weight:bold;
 }
 
-.close:hover{
-  background:#ff0000;
+/* النص الأخير */
+.footer-text{
+  margin-top:25px;
+  color:#ffffff;
+  font-size:16px;
+  opacity:0.8;
 }
 </style>
 </head>
@@ -190,8 +178,16 @@ h1{
       <a class="btn" href="https://tiktok.com/@lr2_f" target="_blank">تيك توك</a>
       <a class="btn" href="https://t.me/lr2_f" target="_blank">تليجرام</a>
 
+      <button class="btn" onclick="toggleMusic()">🎵 تشغيل الموسيقى</button>
+      <button class="btn" onclick="toggleTheme()">🌙 / ☀️ تغيير الوضع</button>
+
     </div>
 
+  </div>
+
+  <!-- العبارة في نهاية الصفحة -->
+  <div class="footer-text">
+    إنَّ خيرَ اللهِ قادمٌ فَاصبر ✨
   </div>
 
 </div>
@@ -204,26 +200,28 @@ h1{
 
     <div id="poetryText"></div>
 
-    <br>
-    <div style="color:#ffffff; margin-top:15px; font-size:16px;">
-      إن خيرَ اللهِ قادمٌ فَاصبر ✨
-    </div>
-
   </div>
 </div>
 
+<!-- الموسيقى -->
+<audio id="music" loop>
+  <source src="ggg.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
-/* أبيات الشعر */
+/* أبيات (صدرين + عجزين = 4 أسطر) */
 const poems = [
 
-`على قدرِ أهلِ العزمِ تأتي العزائمُ<br>وتأتي على قدرِ الكرامِ المكارمُ — المتنبي`,
-`إذا غامَرْتَ في شرفٍ مرومٍ<br>فلا تقنعْ بما دونَ النجومِ — المتنبي`,
-`ولقد ذكرتكِ والرماحُ نواهلٌ مني<br>وبِيضُ الهندِ تقطرُ من دمي — عنترة`,
-`دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ — الشافعي`,
-`إذا الشعبُ يومًا أرادَ الحياةَ<br>فلا بدَّ أن يستجيبَ القدرُ — الشابي`,
-`ومن يهن يسهلِ الهوانُ عليهِ<br>ما لجرحٍ بميتٍ إيلامُ — المتنبي`
+`على قدرِ أهلِ العزمِ تأتي العزائمُ<br>وتأتي على قدرِ الكرامِ المكارمُ<br>وتعظمُ في عينِ الصغيرِ صغارُها<br>وتصغرُ في عينِ العظيمِ العظائمُ — المتنبي`,
 
+`إذا غامَرْتَ في شرفٍ مرومٍ<br>فلا تقنعْ بما دونَ النجومِ<br>فطعمُ الموتِ في أمرٍ حقيرٍ<br>كطعمِ الموتِ في أمرٍ عظيمِ — المتنبي`,
+
+`ولقد ذكرتكِ والرماحُ نواهلٌ مني<br>وبِيضُ الهندِ تقطرُ من دمي<br>فوددتُ تقبيلَ السيوفِ لأنها<br>لمعتْ كبارقِ ثغرِكِ المتبسِّمِ — عنترة`,
+
+`دع الأيام تفعل ما تشاءُ<br>وطب نفساً إذا حكم القضاءُ<br>ولا تجزعْ لحادثةِ الليالي<br>فما لحوادثِ الدنيا بقاءُ — الشافعي`,
+
+`إذا الشعبُ يومًا أرادَ الحياةَ<br>فلا بدَّ أن يستجيبَ القدرُ<br>ولا بدَّ لليلِ أن ينجلي<br>ولا بدَّ للقيدِ أن ينكسرُ — الشابي`
 ];
 
 /* عرض الشعر */
@@ -236,6 +234,22 @@ function randomPoem(){
 /* إغلاق */
 function closePoem(){
   document.getElementById("poetryModal").style.display = "none";
+}
+
+/* الموسيقى */
+const music = document.getElementById("music");
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+
+/* الثيم */
+function toggleTheme(){
+  document.body.classList.toggle("light");
 }
 
 </script>
